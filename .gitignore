@@ -1,0 +1,17 @@
+# Ignore IntelliJ files
+.idea/
+*.iml
+
+# Ignore build and cache files
+/build/
+out/
+bin/
+.gradle/
+.mvn/
+target/
+
+# Ignore compiled files
+*.class
+*.jar
+*.war
+*.ear
