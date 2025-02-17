@@ -24,32 +24,31 @@ fun main() {
                 println("The book \"${book.title}\" was added with ID: ${book.id}")
             }
             2 -> {
-                println("ID of the book to borrow:")
-                val id = readLine()?.toIntOrNull() ?: continue
-                if (library.borrowBook(id))
-                    println("Book was successfully borrowed!")
-                else
-                    println("Looks like this book has already been borrowed..!")
-
+                    println("ID of the book to borrow:")
+                    val id = readLine()?.toIntOrNull() ?: continue
+                    library.borrowBook(id)
             }
             3 -> {
-                println("ID of the book to return:")
-                val id = readLine()?.toIntOrNull() ?: continue
-                if (library.returnBook(id))
-                    println("The book was returned successfully!")
-                else
-                    println("Couldn't return the book. Are you sure this book belongs here..?")
+                    println("ID of the book to return:")
+                    val id = readLine()?.toIntOrNull() ?: continue
+                    library.returnBook(id)
             }
             4 -> {
                 println("Search (title or author):")
                 val query = readLine() ?: continue
                 val list = library.searchBooks(query)
-                println(list.joinToString(separator = "\n"))
+                if (list.isNotEmpty())
+                    println(list.joinToString(separator = "\n"))
+                else
+                    println("No results found for \'$query\'..!")
             }
             5 -> {
                 println("List of books in this library")
                 val list = library.getAllBooks()
-                println(list.joinToString(separator = "\n"))
+                if (list.isNotEmpty())
+                    println(list.joinToString(separator = "\n"))
+                else
+                    println("No books added to this library yet..!")
             }
             6 -> {
                 println("Bye!")

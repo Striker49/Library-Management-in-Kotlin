@@ -9,24 +9,32 @@ class Library {
     }
 
     fun borrowBook(id: Int): Boolean {
-        if (books.isEmpty() || id < 1 || id - 1 !in books.indices)
+        if (books.isEmpty() || id < 1 || id - 1 !in books.indices) {
+            println("There are no books with the id ($id) in our library..!")
             return (false)
+        }
         if (books[id - 1].isAvailable) {
             books[id - 1].isAvailable = false
+            println("Book '${books[id - 1].title}' was successfully borrowed!")
             return (true)
         }
         println("books indices: ${books.indices}")
-        return (false)
+        println("Looks like the book '${books[id - 1].title}' has already been borrowed..!")
+        return (true)
     }
 
     fun returnBook(id: Int): Boolean {
-        if (books.isEmpty() || id < 1 || id - 1 !in books.indices)
+        if (books.isEmpty() || id < 1 || id - 1 !in books.indices) {
+            println("There are no books with the id ($id) in our library..!")
             return (false)
+        }
         if (!books[id - 1].isAvailable) {
             books[id - 1].isAvailable = true
+            println("The book \'${books[id - 1].title}\' was returned successfully!")
             return (true)
         }
-        return (false)
+        println("Couldn't return the book. Are you sure this book belongs here..?")
+        return (true)
     }
 
     fun searchBooks(query: String): List<Book> {
