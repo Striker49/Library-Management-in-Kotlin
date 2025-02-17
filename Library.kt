@@ -5,14 +5,14 @@ class Library {
     fun addBook(title: String, author: String, year: Int): Book {
         val book = Book(++lastId, title, author, year)
         books.add(book)
-        return (book);
+        return (book)
     }
 
     fun borrowBook(id: Int): Boolean {
-        if (books.isEmpty() || id !in books.indices)
+        if (books.isEmpty() || id < 1 || id - 1 !in books.indices)
             return (false)
-        if (books[id].isAvailable) {
-            books[id].isAvailable = false;
+        if (books[id - 1].isAvailable) {
+            books[id - 1].isAvailable = false
             return (true)
         }
         println("books indices: ${books.indices}")
@@ -20,10 +20,10 @@ class Library {
     }
 
     fun returnBook(id: Int): Boolean {
-        if (books.isEmpty() || id !in books.indices)
+        if (books.isEmpty() || id < 1 || id - 1 !in books.indices)
             return (false)
-        if (!books[id].isAvailable) {
-            books[id].isAvailable = true;
+        if (!books[id - 1].isAvailable) {
+            books[id - 1].isAvailable = true
             return (true)
         }
         return (false)
